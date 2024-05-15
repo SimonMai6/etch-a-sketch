@@ -3,17 +3,17 @@
     flex-direction: row;
     text-align: center;
     flex-wrap: wrap;
-    max-width: 500px;
-    max-height: 500px;
+    width:250px; 
+    max-width:250px; 
+   
+        
 }
 
-#container div div{
-    background-color: red;
-    
-}
-#container div div{
-    border: solid black 2px;
 
+#container div div{
+    border: solid black 1px;
+    width:1px; 
+    max-width:1px;
     padding: 5px;
 }
 

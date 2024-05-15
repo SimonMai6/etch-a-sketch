@@ -1,5 +1,8 @@
+const container = document.querySelector("#container");
+
+
 function makeGrid(num){
-    const container = document.querySelector("#container");
+    
     
     for(let i = 1; num >= i; i++){
         const divRow = document.createElement("div");
@@ -7,7 +10,7 @@ function makeGrid(num){
 
         for(let j = 1; num >= j; j++){
             const divColumn = document.createElement("div");
-            divColumn.textContent = j;
+            divColumn.textContent = "";
             divRow.appendChild(divColumn);
         }
         
@@ -15,11 +18,11 @@ function makeGrid(num){
     }
 }
 
-makeGrid(16);
+makeGrid(45);
+
 
 const button = document.querySelector("button");
 button.addEventListener("click", () =>{
-    const container = document.querySelector("#container");
 
     while(container.hasChildNodes()){
         container.removeChild(container.firstChild);
@@ -34,4 +37,13 @@ button.addEventListener("click", () =>{
     }
     
 
+});
+
+
+container.addEventListener("mouseover", (event) =>{
+
+    if(!(event.target.id === "container")){
+        event.target.style.backgroundColor = "red";
+    }
+    
 });
