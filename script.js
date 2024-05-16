@@ -9,8 +9,10 @@ function makeGrid(num){
         container.appendChild(divRow);
 
         for(let j = 1; num >= j; j++){
+            let size = (container.clientWidth / num)-2;
             const divColumn = document.createElement("div");
-            divColumn.textContent = "";
+            divColumn.style.width = `${size}px`;
+            divColumn.style.height = `${size}px`;
             divRow.appendChild(divColumn);
         }
         
@@ -18,7 +20,7 @@ function makeGrid(num){
     }
 }
 
-makeGrid(45);
+makeGrid(16);
 
 
 const button = document.querySelector("button");
@@ -43,7 +45,7 @@ button.addEventListener("click", () =>{
 container.addEventListener("mouseover", (event) =>{
 
     if(!(event.target.id === "container")){
-        event.target.style.backgroundColor = "red";
+        event.target.style.backgroundColor = "black";
     }
     
 });

@@ -1,19 +1,22 @@
+body{
+    height: 100%;
+}
+
+button{
+    margin-bottom: 16px;
+}
+
 #container{
     display: flex;
-    flex-direction: row;
-    text-align: center;
-    flex-wrap: wrap;
-    width:250px; 
-    max-width:250px; 
-   
-        
+
+    height: 600px;
+    width: 600px;  
 }
 
 
+
 #container div div{
-    border: solid black 1px;
-    width:1px; 
-    max-width:1px;
-    padding: 5px;
+    border: 1px solid black;
+
 }
 
