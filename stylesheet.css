@@ -1,5 +1,10 @@
 body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 100%;
+    background-color: rgb(128,0,32);
+    opacity: 100%;
 }
 
 button{
@@ -8,7 +13,7 @@ button{
 
 #container{
     display: flex;
-
+    background-color: white;
     height: 600px;
     width: 600px;  
 }
@@ -17,6 +22,7 @@ button{
 
 #container div div{
     border: 1px solid black;
+
 
 }
 
