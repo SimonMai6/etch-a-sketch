@@ -1,9 +1,14 @@
 const container = document.querySelector("#container");
-const RAINBOW = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
-let index = 0;
-const rainbowButton = document.querySelector("#rainbow");
-let isRainbow = false;
+const rgbButton = document.querySelector("#rgb");
 const sizeButton = document.querySelector("#size");
+const opacityButton = document.querySelector("#opacity");
+
+let isOpacity = false;
+let isRGB = false;
+let index = 0;
+
+
+
 makeGrid(16);
 
 
@@ -17,25 +22,48 @@ function makeGrid(num){
             const divColumn = document.createElement("div");
             divColumn.style.width = `${size}px`;
             divColumn.style.height = `${size}px`;
+            divColumn.classList.add("cell");
             divRow.appendChild(divColumn);
         }
     }
 }
+function getRandomInt(max){
+    return Math.floor(Math.random()*max);
+}
 
-function changeRainbow(event){
-    event.target.style.backgroundColor = RAINBOW[index];
-    ++index;
-    if(!(index < RAINBOW.length)){
-        index-=RAINBOW.length;
+function changeColor(event){
+    event.target.style.backgroundColor = `rgb(${getRandomInt(255)},
+    ${getRandomInt(255)},${getRandomInt(255)})`;
+
+}
+
+function changeOpacity(event){
+    let rgba = event.target.style.background;
+    if(!(rgba.length === 12)){
+        event.target.style.background = changeAlpha(rgba);
     }
 }
 
+function changeAlpha(rgba){
+    if(rgba.length === 16){
+        return `rgba(0, 0, 0, ${Number(rgba.slice(rgba.length - 3, rgba.length-2))+0.1})`;
+    }
+    else{
+        return `rgba(0, 0, 0, ${Number(rgba.slice(rgba.length - 4, rgba.length-1))+0.1})`;
+    }
+    
+}
+
+
+
 sizeButton.addEventListener("click", () =>{
     const userInput = prompt("Enter a number that is less than or equal to a hundred.", "");
-    while(container.hasChildNodes()){
-        container.removeChild(container.firstChild);
+    if(userInput === ""){
     }
-    if(100 >= userInput){
+    else if(100 >= userInput){
+        while(container.hasChildNodes()){
+            container.removeChild(container.firstChild);
+        }
         makeGrid(userInput);
     }
     else{
@@ -44,10 +72,11 @@ sizeButton.addEventListener("click", () =>{
 });
 
 container.addEventListener("mouseover", (event) =>{
-    if(event.target.id === "container"){
+    if(isOpacity){
+        changeOpacity(event);
     }
-    else if(isRainbow){
-        changeRainbow(event);
+    else if(isRGB){
+        changeColor(event);
     }
     else{
         event.target.style.backgroundColor = "black";
@@ -55,6 +84,17 @@ container.addEventListener("mouseover", (event) =>{
     
 });
 
-rainbowButton.addEventListener("click", () => {
-    isRainbow = true;
+opacityButton.addEventListener("click", () => {
+    const cell = document.querySelectorAll("div.cell");
+    for(let i = 0; i < cell.length ; ++i){
+        cell[i].style.background = `rgba(0, 0, 0, 0)`;
+    }
+
+    isRGB = false;
+    isOpacity = true;
+});
+
+rgbButton.addEventListener("click", () => {
+    isOpacity = false;
+    isRGB = true;
 });
